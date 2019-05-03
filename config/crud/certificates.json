@@ -1,0 +1,41 @@
+{
+    "fields": [
+        {
+            "name": "po",
+            "type": "string"
+        },
+        {
+            "name": "part_number",
+            "type": "string"
+        },
+        {
+            "name": "certificate_file",
+            "type": "file"
+        },
+        {
+            "name": "uploaded_by",
+            "type": "integer#unsigned"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "App\\User"
+        }
+    ],
+    "validations": [
+        {
+            "field": "po",
+            "rules": "required"
+        },
+        {
+            "field": "part_number",
+            "rules": "required"
+        },
+        {
+            "field": "certificate_file",
+            "rules": "required"
+        }
+    ]
+}
