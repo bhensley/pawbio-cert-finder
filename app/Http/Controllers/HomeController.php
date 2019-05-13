@@ -26,16 +26,21 @@ class HomeController extends Controller
     {
         $po = $request->get('po');
         $part = $request->get('part');
+        $lot = $request->get('lot');
+
+        $certificate = null;
+        $searched = false;
         
         // Are we performing a search?
-        if (!empty($po) && !empty($part)) {
+        if (!empty($po) && !empty($part) && !empty($lot)) {
             $certificate = Certificate::where('po', $po)
                 ->where('part', $part)
-                ->latest();
+                ->where('lot', $lot)
+                ->first();
 
-            print_r(get_class_methods($certificate));
+            $searched = true;
         }
         
-        return view('home');
+        return view('home', ['cert' => $certificate, 'search' => $searched]);
     }
 }

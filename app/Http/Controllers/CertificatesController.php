@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Auth;
 class CertificatesController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\View\View
@@ -114,7 +124,8 @@ class CertificatesController extends Controller
     {
         $this->validate($request, [
 			'po' => 'required',
-			'part_number' => 'required',
+            'part' => 'required',
+            'lot' => 'required',
 			'certificate_file' => 'required'
 		]);
         $requestData = $request->all();
